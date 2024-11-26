@@ -1,12 +1,10 @@
-'use strict';
-
 const chai = require('chai').should();
-const userIp = require('../');
+import userIp from '../';
 const PORT = 3000;
-const supertest = require('supertest');
-const http = require('http');
+import supertest from 'supertest';
+import http from 'http';
 
-function onBefore(done) {
+function onBefore(done: any) {
 
     const server = http.createServer(function httpHandler(req, res) {
         const ip = userIp(req);
@@ -24,17 +22,16 @@ function onBefore(done) {
 
 describe('UserIP', () => {
     before(onBefore);
-    
+
     it('should Successfully return users ip address', done => {
         const request = supertest('http://localhost:3000');
         request.get('/')
             .expect(200)
-            .end(function(error, res) {
+            .end(function (error: any, res: any) {
                 if (error) return done(error);
                 res.body.should.be.an('object');
                 res.body.should.have.property('ip').and.not.to.be.empty;
                 done();
             })
-
     })
 })
