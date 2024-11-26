@@ -1,6 +1,6 @@
-'use strict';
+// import { Request } from 'express';
 
-function extractIP(req) {
+function extractIP(req: any) {
 
     // Throw Error If Request Is Null Or Undefined
     if (!req) {
@@ -30,4 +30,4 @@ function extractIP(req) {
 
 }
 
-module.exports = extractIP;
+export default extractIP;
